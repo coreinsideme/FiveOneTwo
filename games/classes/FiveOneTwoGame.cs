@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Games
 {
-    public class TwoFiveSixGame: IGame
+    public class FiveOneTwoGame: IGame
     {
         private int[,] gameData;
         private GameState gameState = GameState.NotStarted;
