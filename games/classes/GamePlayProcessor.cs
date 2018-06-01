@@ -25,6 +25,10 @@ namespace Games
 
         public void StopGame() {}
 
+        public void SaveGame() {}
+
+        public void LoadGame() {}
+
         public void Process(char commandChar) {
 
             if(game.GameState != GameState.InProcess) {
@@ -62,7 +66,5 @@ namespace Games
 
             command.Execute(game);
         }
-
-        
     }
 }

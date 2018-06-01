@@ -12,7 +12,14 @@ namespace ConsoleApp
             IGameCreator gameCreator = new GameCreator(gameBuilder);
 
             IGamePlayProcessor gameProcessor = new GamePlayProcessor(gameCreator.CreateGame());
-            gameProcessor.StartGame();
+            
+            Console.WriteLine("Do you want to load previous game, y/n?");
+
+            if(Console.ReadKey().KeyChar != 'y') {
+                gameProcessor.LoadGame();
+            } else {
+                gameProcessor.StartGame();
+            }            
 
             while(true) {
                 char key = Console.ReadKey().KeyChar;
