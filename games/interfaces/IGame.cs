@@ -8,8 +8,6 @@ namespace Games
         GameState GameState { get; }
         int[, ] Data { get; set; }
 
-        void SetFieldBuilder(IFieldBuilder fieldBuilder);
-
         void StartGame();
 
         void GoUp();

@@ -13,7 +13,11 @@ namespace Games
 
         private IFieldBuilder fieldBuilder;
 
-        public void SetFieldBuilder(IFieldBuilder _fieldBuilder) {
+        public FiveOneTwoGame(IFieldBuilder _fieldBuilder) {
+            if(_fieldBuilder == null) {
+                throw new ArgumentNullException(nameof(_fieldBuilder) + " should be specified");
+            }
+
             fieldBuilder = _fieldBuilder;
         }
 

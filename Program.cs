@@ -8,7 +8,7 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            IGameBuilder gameBuilder = new FiveOneTwoGameBuilder(new FieldBuilder(), new GameDataProvider());
+            IGameBuilder gameBuilder = new FiveOneTwoGameBuilder(new GameDataProvider());
             IGameCreator gameCreator = new GameCreator(gameBuilder);
 
             IGamePlayProcessor gameProcessor = new GamePlayProcessor(gameCreator.CreateGame());

@@ -7,23 +7,16 @@ namespace Games {
     public class FiveOneTwoGameBuilder: IGameBuilder {
         
         private readonly FiveOneTwoGame game;
-        private readonly int fieldSize = 5;
+        private const int fieldSize = 5;
 
-        private readonly IFieldBuilder fieldBuilder;
         private readonly IGameDataProvider gameDataProvider;
 
-        public FiveOneTwoGameBuilder(IFieldBuilder _fieldBuilder, IGameDataProvider _gameDataProvider) {
-            if(_fieldBuilder == null) throw new ArgumentNullException("fieldBuilder should not be null");
+        public FiveOneTwoGameBuilder(IGameDataProvider _gameDataProvider) {
             if(_gameDataProvider == null) throw new ArgumentNullException("gameDataProvider should not be null");
             
-            fieldBuilder = _fieldBuilder;
             gameDataProvider = _gameDataProvider;
 
-            game = new FiveOneTwoGame();
-        }
-
-        public void SetFieldBuilder() {
-            game.SetFieldBuilder(fieldBuilder);
+            game = new FiveOneTwoGame(new FiveOneTwoFieldBuilder(fieldSize));
         }
 
         public void SetData() {

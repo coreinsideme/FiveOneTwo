@@ -4,22 +4,32 @@ using Extensions;
 
 namespace Field
 {
-    public class FieldBuilder: IFieldBuilder {
+    public class FiveOneTwoFieldBuilder: IFieldBuilder {
 
-        public string CreateField(int[,] gameField) {
+        private readonly int fieldSize;
+
+        public FiveOneTwoFieldBuilder(int _fieldSize)
+        {
+            if(_fieldSize <= 0) { throw new ArgumentException(nameof(_fieldSize) + " should be more then null"); }
+
+            fieldSize = _fieldSize;
+        }
+
+        public string CreateField(int[,] gameData) {
+
+            int horizontal = gameData.GetLength(0);
+            int vertical = gameData.GetLength(1);
             
-            if(gameField == null || gameField.GetLength(0) != gameField.GetLength(1)) {
-                throw new ArgumentNullException("gameField should be appropriate");
+            if(gameData == null || horizontal != fieldSize || vertical != fieldSize) {
+                throw new ArgumentNullException(nameof(gameData) + " should be appropriate");
             }
-
-            int horizontal = gameField.GetLength(0);
-            int vertical = gameField.GetLength(1);
+            
             var stringBuilder = new StringBuilder();
 
             for (int i = 0; i < vertical; i++)
             {
                 stringBuilder.Append(DrawLine(horizontal));
-                stringBuilder.Append(DrawValues(gameField.GetRow(i)));
+                stringBuilder.Append(DrawValues(gameData.GetRow(i)));
 
                 if(i == vertical - 1) {
                     stringBuilder.Append(DrawLine(horizontal));

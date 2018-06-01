@@ -13,7 +13,6 @@ namespace Games
         }
 
         public IGame CreateGame() {
-            builder.SetFieldBuilder();
             builder.SetData();
             return builder.GetGame();
         }
