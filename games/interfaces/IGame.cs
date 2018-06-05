@@ -5,10 +5,7 @@ namespace Games
 {
     public interface IGame
     {
-        GameState GameState { get; }
-        int[, ] Data { get; set; }
-
-        void StartGame();
+        GameState GameState { get; set; }
 
         void GoUp();
 

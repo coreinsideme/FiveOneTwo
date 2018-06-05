@@ -4,6 +4,10 @@ namespace Games
 {
     public interface IGameDataProvider
     {
-        int[,] GetStartData(int fieldSize);
+        int[,] GetStartData();
+
+        bool SaveData(GameState gameState);
+
+        GameState LoadData();
     }
 }

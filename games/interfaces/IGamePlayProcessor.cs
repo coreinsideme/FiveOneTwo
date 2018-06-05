@@ -10,6 +10,8 @@ namespace Games
 
         void StopGame();
 
-        GameState GameState { get; }
+        void SaveGame();
+
+        void LoadGame();
     }
 }

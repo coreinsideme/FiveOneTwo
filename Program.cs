@@ -8,25 +8,35 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            IGameBuilder gameBuilder = new FiveOneTwoGameBuilder(new GameDataProvider());
-            IGameCreator gameCreator = new GameCreator(gameBuilder);
+            IGameCreator gameCreator = new FiveOneTwoGameCreator(5);
+            IGamePlayProcessor gameProcessor = gameCreator.CreateGame();
+            
+            Console.WriteLine("Do you wanna load the previous game, y/n?");
+            char loadKey = Console.ReadKey().KeyChar;
 
-            IGamePlayProcessor gameProcessor = new GamePlayProcessor(gameCreator.CreateGame());
-            gameProcessor.StartGame();
+            if(loadKey == 'y') {
+                gameProcessor.LoadGame();
+            } else {
+                gameProcessor.StartGame();
+            }
 
             while(true) {
                 char key = Console.ReadKey().KeyChar;
 
                 if(key == 'e') {
                     gameProcessor.StopGame();
+
+                    Console.WriteLine("Do you wanna save the game, y/n?");
+                    char saveChar = Console.ReadKey().KeyChar;
+
+                    if(saveChar == 'y') {
+                        gameProcessor.SaveGame();
+                    }
+
                     return;
                 }
 
                 gameProcessor.Process(key);
-
-                if(gameProcessor.GameState == GameState.Lost || gameProcessor.GameState == GameState.Won) {
-                    Console.WriteLine("Game is over, you've " + gameProcessor.GameState + " , press 'e' to exit");
-                }
             }
         }
     }

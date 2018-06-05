@@ -4,7 +4,7 @@ namespace Games
 {
     public interface IGameBuilder
     {
-        void SetData();
+        int GameSize { get; set; }
 
         IGame GetGame();
     }
