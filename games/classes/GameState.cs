@@ -6,4 +6,5 @@ namespace Games
 
         public int[,] StateData { get; set; }
     }
+
 }

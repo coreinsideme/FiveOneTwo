@@ -4,6 +4,6 @@ namespace Games
 {
     public interface IGameCreator
     {
-        IGame CreateGame();
+        IGamePlayProcessor CreateGame();
     } 
 }

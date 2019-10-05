@@ -12,16 +12,6 @@ namespace Games
         
         private GameState gameState = GameState.NotStarted;
 
-        private IFieldBuilder fieldBuilder;
-
-        public FiveOneTwoGame(IFieldBuilder _fieldBuilder) {
-            if(_fieldBuilder == null) {
-                throw new ArgumentNullException(nameof(_fieldBuilder) + " should be specified");
-            }
-
-            fieldBuilder = _fieldBuilder;
-        }
-
         public GameState GameState { 
             get {
                 var gameState = new GameState();
@@ -44,28 +34,25 @@ namespace Games
             Refresh();
         }
 
+
         public void GoUp() {
             OrderColumnUp();
             Shuffle();
-            Refresh();
         }
 
         public void GoDown() {
             OrderColumnDown();
             Shuffle();
-            Refresh();
         }
 
         public void GoLeft() {
             OrderRowLeft();
             Shuffle();
-            Refresh();
         }
 
         public void GoRight() {
             OrderRowRight();
-            Shuffle();
-            Refresh();         
+            Shuffle();        
         }
 
         private void OrderColumnDown() {
@@ -123,13 +110,6 @@ namespace Games
             }
         }
 
-        private void Refresh() {
-            string gameState = fieldBuilder.CreateField(gameData);
-
-            Console.Clear();
-            Console.WriteLine(gameState);
-        }
-
         private void Shuffle() {
             int fieldSize = gameData.GetLength(1);
             var random = new Random();
@@ -145,14 +125,14 @@ namespace Games
                     }
 
                     if(gameData[x, y] >= 512) {
-                        gameState = GameState.Won;
+                        state = State.Won;
                         return;
                     }
                 }
             }
 
             if(emptyCells == 0) {
-                gameState = GameState.Lost;
+                state = State.Lost;
                 return;
             }
 
@@ -165,6 +145,22 @@ namespace Games
                 emptyCellsCoordinates.RemoveAt(index);
                 gameData[coord.x, coord.y] = 2;
             }
+        }
+
+        private void ParseGameState(GameState gameState) {
+            if(gameState.Data == null) {
+                throw new ArgumentNullException("Data in " + nameof(gameState) + " should not be null ");
+            }
+
+            gameData = gameState.Data;
+            state = gameState.State;
+        }
+
+        private GameState CreateGameState() {
+            return new GameState {
+                Data = gameData,
+                State = state
+            };
         }
     }
     

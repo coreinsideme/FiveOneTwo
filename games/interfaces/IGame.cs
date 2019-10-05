@@ -7,7 +7,6 @@ namespace Games
     {
         GameState GameState { get; }
 
-
         void StartGame();
 
         void GoUp();
