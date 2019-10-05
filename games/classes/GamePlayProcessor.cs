@@ -13,12 +13,6 @@ namespace Games
             game = _game;
         }
 
-        public GameState GameState {
-            get {
-                return game.GameState;
-            }
-        }
-
         public void StartGame() {
             game.StartGame();
         }
@@ -31,9 +25,9 @@ namespace Games
 
         public void Process(char commandChar) {
 
-            if(game.GameState != GameState.InProcess) {
-                Console.WriteLine("Game is not in process");
-                return;
+            if(gameProcessor.GameState == GameState.Lost || gameProcessor.GameState == GameState.Won) {
+                    Console.WriteLine("Game is over, you've " + gameProcessor.GameState + " , press 'e' to exit");
+                    return;
             }
             
             IGameCommand command;

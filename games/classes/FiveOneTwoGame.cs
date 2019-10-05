@@ -9,6 +9,7 @@ namespace Games
     public class FiveOneTwoGame: IGame
     {
         private int[,] gameData;
+        
         private GameState gameState = GameState.NotStarted;
 
         private IFieldBuilder fieldBuilder;
@@ -21,18 +22,16 @@ namespace Games
             fieldBuilder = _fieldBuilder;
         }
 
-        public int[,] Data { 
+        public GameState GameState { 
             get {
-                return gameData;
+                var gameState = new GameState();
+                gameState.State = gameState;
+                gameState.StateData = gameData;
+
+                return gameState;
             }
             set {
                 gameData = value;
-            }
-        }
-
-        public GameState GameState {
-            get {
-                return gameState;
             }
         }
 

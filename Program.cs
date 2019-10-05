@@ -15,7 +15,7 @@ namespace ConsoleApp
             
             Console.WriteLine("Do you want to load previous game, y/n?");
 
-            if(Console.ReadKey().KeyChar != 'y') {
+            if(Console.ReadKey().KeyChar == 'y') {
                 gameProcessor.LoadGame();
             } else {
                 gameProcessor.StartGame();
@@ -25,6 +25,12 @@ namespace ConsoleApp
                 char key = Console.ReadKey().KeyChar;
 
                 if(key == 'e') {
+                    Console.WriteLine("Do you want to save game, y/n?");
+
+                    if(Console.ReadKey().KeyChar == 'y') {
+                        gameProcessor.SaveGame();
+                    }
+
                     gameProcessor.StopGame();
                     return;
                 }

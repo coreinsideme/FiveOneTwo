@@ -1,7 +1,7 @@
 namespace Games
 {
     
-    public enum GameState
+    public enum State
     {
         NotStarted = 0,
         InProcess = 1,
